@@ -1,0 +1,6 @@
+Package: @Bundle-SymbolicName@
+Version: @Bundle-Version@
+Architecture: all
+Maintainer: @Bundle-Vendor@
+Depends: libmica-gpio
+Description: @Bundle-Name@

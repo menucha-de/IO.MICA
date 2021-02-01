@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="havis.device.io-mica" default="publish" xmlns:ivy="antlib:org.apache.ivy.ant">
+
+	<property file="${basedir}/build.properties" />
+
+	<property name="resources.dir" location="${basedir}/resources" />
+
+	<import>
+		<url url="${ivy.url}/ant/default.xml" />
+	</import>
+
+	<target name="clean-all" description="Cleans the project">
+		<clean-all />
+	</target>
+
+	<target name="jar">
+		<check.build.properties />
+		<jar-bin />
+	</target>
+
+	<target name="deb" depends="jar">
+		<deb name="50_${basename}">
+			<ivy:retrieve pattern="${build.dir}/tar/[artifact].[ext]" conf="deb" />
+		</deb>
+		<copy file="${build.dir}/${basename}.deb" tofile="${build.dir}/tar/${basename}.deb" />
+	</target>
+
+	<target name="app" depends="deb">
+		<app deb="false" />
+	</target>
+
+	<target name="publish" depends="app">
+		<publish jar="false" src="false" doc="false" app="false" />
+	</target>
+
+	<target name="standalone" depends="app">
+        <standalone deb="false" />
+		<exec executable="dpkg">
+			<arg value="-x"/>
+			<arg value="${build.dir}/havis.device.io.deb"/>
+			<arg value="${build.dir}/deb"/>
+		</exec>
+	</target>
+
+</project>

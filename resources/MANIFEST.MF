@@ -1,0 +1,11 @@
+Application-Name: GPIO Hardware
+Bundle-Name: Ha-VIS Native IO Device Implementation for MICA
+Bundle-SymbolicName: havis.device.io-mica
+Bundle-Version: 2.6.0
+Implementation-Version: 2.6
+Havis-Bundle: /OSGI-INF/havis.device.io-mica.properties
+Bundle-ManifestVersion: 2
+Bundle-Vendor: HARTING IT_SD
+Bundle-Activator: havis.device.io.common.ext.Activator
+Import-Package: 
+ havis.device.io.common.ext
